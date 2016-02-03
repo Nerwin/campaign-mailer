@@ -1,0 +1,14 @@
+.error{
+color:#ff0000;
+font-size:12px;
+}
+.success{
+color:#61B329;
+font-size:12px;
+}
+
+#footerCopyright
+{
+	color: lightslategray;
+}
+
