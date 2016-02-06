@@ -11,4 +11,47 @@ font-size:12px;
 {
 	color: lightslategray;
 }
+.iconeImage{
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+}
+#formUpdateList{
+    position: absolute;
+}
 
+/*######################## Tuiles ##################################*/
+
+.div-contact-list{
+    background-color: #F9F9F9;
+    height: 200px;
+    border-style: solid;
+    overflow-y: auto;    
+}
+
+.div-contact{
+    background-color: #F9F9F9;
+    height: 200px;
+    border-style: solid;
+    overflow-y: auto;    
+}
+
+.div-ajout{
+    background-color: #F9F9F9;
+    height: 200px;
+    border-style: solid;
+    overflow-y: auto;    
+}
+
+.div-update{
+    background-color: #F9F9F9;
+    height: 250px;
+    border-style: solid;
+    overflow-y: auto;    
+}
+.div-other-contact{
+    background-color: #F9F9F9;
+    height: 200px;
+    border-style: solid;
+    overflow-y: auto;        
+}

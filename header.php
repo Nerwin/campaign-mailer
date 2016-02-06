@@ -15,6 +15,11 @@
     <link href="css/simple-sidebar.css" rel="stylesheet">
     <!-- Perso CSS -->
     <link href="css/style.css" rel="stylesheet">
+    <!-- JS -->
+    <script type="text/javascript\" src="js/bootstrap.js"></script>
+    <script type="text/javascript\" src="js/function.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 </head>
 
 <body>
