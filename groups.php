@@ -98,7 +98,7 @@
                                             <td id='td-contact-name-" . $row['contact_id'] . "'>" . $row["contact_name"] ." </td>
                                             <td id='td-contact-mail-" . $row['contact_id'] . "'> ". $row["contact_mail"] ."</td>
                                             <td>
-                                                <a title='modifier' onclick='popFormContact(" . $row['contact_id'] . ")'>
+                                                <a title='modifier' onclick='popFormContact(\"" . $row['contact_id'] . "\")'>
                                                     <img class='iconeImage' src='img/engrenage.png'/>
                                                 </a>
                                             </td>

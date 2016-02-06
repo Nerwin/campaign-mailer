@@ -11,7 +11,7 @@
                     console.log(name, mail, contactId);
                     $('#input_update_contact1').val(name);
                     $('#input_update_contact3').val(mail);
-                    //$('#input_update_contact2').val(contactId);
+                    $('#input_update_contact2').val(contactId);
                     document.getElementById('formUpdateContact').style.visibility="visible";
                 }
         }
@@ -50,13 +50,14 @@
                                     $sql = "SELECT contact_name, contact_id, contact_mail FROM contact";
                                     foreach ($dbh->query($sql) as $row)
                                     {
+                                        $id_contact=$row['contact_id'];
                                         echo "
                                             <tr>
                                                 <td id='td-contact-id-" . $row['contact_id'] . "'>" . $row["contact_id"] . "</td>
                                                 <td id='td-contact-name-" . $row['contact_id'] . "'>" . $row['contact_name'] . "</td>
                                                 <td id='td-contact-mail-" . $row['contact_id'] . "'>" . $row['contact_mail'] . "</td>
                                                 <td>
-                                                    <a title='modifier' onclick='popFormContact(" . $row['contact_id'] . ")'>
+                                                    <a title='modifier' onclick='popFormContact(\"" . $id_contact . "\")'>
                                                         <img class='iconeImage' src='img/engrenage.png'/>
                                                     </a>
                                                 </td>
