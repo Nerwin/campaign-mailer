@@ -11,7 +11,7 @@
                     console.log(name, mail, contactId);
                     $('#input_update_contact1').val(name);
                     $('#input_update_contact3').val(mail);
-                    $('#input_update_contact2').val(contactId);
+                    //$('#input_update_contact2').val(contactId);
                     document.getElementById('formUpdateContact').style.visibility="visible";
                 }
         }

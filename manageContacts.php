@@ -4,9 +4,10 @@
     if (isset($_POST['createContact']) && $_GET['type'] == 'add')
     {
         /* VALUES */
+        $id_contact = uniqid();
         $nom=$_POST['name'];
         $mail=$_POST['mail'];   
-        $sql = "INSERT INTO contact (contact_name, contact_mail, id_user) VALUES ( '".utf8_decode($nom)."','".utf8_decode($mail)."', '1')";
+        $sql = "INSERT INTO contact (contact_id, contact_mail, contact_name, id_user) VALUES ('" . $id_contact . "', '".utf8_decode($mail)."','".utf8_decode($nom)."', '1')";
         // use exec() because no results are returned
         $dbh->exec($sql);
         header('Location: contacts.php');
