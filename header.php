@@ -24,6 +24,11 @@ foreach ($dbh->query($sql) as $row)
     <link href="css/simple-sidebar.css" rel="stylesheet">
     <!-- Perso CSS -->
     <link href="css/style.css" rel="stylesheet">
+    <!--FontAwesome-->
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <!--ICONE-->
+    <link rel="icon" type="image/png" href="img/icon_mail.png" />
     <!-- JS -->
     <script type="text/javascript\" src="js/bootstrap.js"></script>
     <script src="js/jquery.js"></script>
@@ -31,15 +36,15 @@ foreach ($dbh->query($sql) as $row)
 </head>
 
 <body>
+    <div class="logout">
+        <a class="logout-a" href='logout.php?logout'>Sign Out from <?php echo $user_login . " / " . $user_mail; ?></a>           
+    </div>
     <div id="wrapper">
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                         Menu d'administration
-                </li>
-                <li>
-                    <a href='logout.php?logout'>Sign Out from <?php echo $user_login; ?></a>
                 </li>
                 <li class="important_sidebar">
                     <a href="contacts.php">Contacts</a>
@@ -63,5 +68,4 @@ foreach ($dbh->query($sql) as $row)
             </ul>
             
         </div>
-        <!-- /#sidebar-wrapper -->
 </html>

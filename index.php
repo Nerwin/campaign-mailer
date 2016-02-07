@@ -54,7 +54,7 @@ if(isset($_POST['btn-login']))
     <script src="js/bootstrap.min.js"></script>
 </head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Login & Registration</title>
+        <title>Login</title>
     </head>
     <body>
         <center>

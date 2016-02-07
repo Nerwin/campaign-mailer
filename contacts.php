@@ -48,12 +48,14 @@ if(!isset($_SESSION['user']))
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1>Mes Contacts</h1>
+                        <h1>Contacts</h1>
                     </div>
                     <div class="groups-container">
+                        <h3 class="col-md-6">Mes Contacts</h3>
+                        <h3 class="col-md-6">Ajouter un contact</h3>
                         <!--Affichage de la liste des contact -->
                         <div class="col-md-6 div-update">
-                            <table class="col-md-12 table table-hover">
+                            <table class="col-md-12 table table-hover table-design">
                                 <?php 
                                     $sql = "SELECT contact_name, contact_id, contact_mail FROM contact WHERE id_user=" . $_SESSION['user'];
                                     foreach ($dbh->query($sql) as $row)
@@ -61,17 +63,20 @@ if(!isset($_SESSION['user']))
                                         $id_contact=$row['contact_id'];
                                         echo "
                                             <tr>
-                                                <td id='td-contact-id-" . $row['contact_id'] . "'>" . $row["contact_id"] . "</td>
+                                                <td style='visibility: hidden; position:absolute' id='td-contact-id-" . $row['contact_id'] . "'>" . $row["contact_id"] . "</td>
+                                                <td>
+                                                    <i class='fa fa-user fa-2'></i>
+                                                </td>
                                                 <td id='td-contact-name-" . $row['contact_id'] . "'>" . $row['contact_name'] . "</td>
                                                 <td id='td-contact-mail-" . $row['contact_id'] . "'>" . $row['contact_mail'] . "</td>
                                                 <td>
-                                                    <a title='modifier' onclick='popFormContact(\"" . $id_contact . "\")'>
-                                                        <img class='iconeImage' src='img/engrenage.png'/>
+                                                    <a style='color: black;cursor: pointer' title='modifier' onclick='popFormContact(\"" . $id_contact . "\")'>
+                                                        <i class='fa fa-cog fa-2'></i>
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a title='Supprimer' href='manageContacts.php?type=delete&contact_id=". $row["contact_id"] . "'>
-                                                        <img class='iconeImage' src='img/croix.png'/>
+                                                    <a style='color: black' title='Supprimer' href='manageContacts.php?type=delete&contact_id=". $row["contact_id"] . "'>
+                                                        <i class='fa fa-trash-o fa-2'></i>
                                                     </a>
                                                 </td>
                                             </tr>";
@@ -92,8 +97,8 @@ if(!isset($_SESSION['user']))
                                 </div>
                             </form>
                         </div>
-                        <h3 class="col-md-6">Modifier</h3>
-                        <h3 class="col-md-6">Importer</h3>
+                        <h3 class="col-md-6">Modifier un contact</h3>
+                        <h3 class="col-md-6">Importer des contacts</h3>
                         <div class="col-md-6 div-update">
                         <!-- Formulaire de modification de contact -->
                             <div name="formUpdateContact" id="formUpdateContact" style="visibility: hidden"> 
@@ -114,7 +119,7 @@ if(!isset($_SESSION['user']))
                             <form method="post" action="manageContacts.php?type=importer" enctype="multipart/form-data">
                                     <input onclick='checkList()' id='checkAll' type='checkBox' name=''><strong>Cocher tout</strong><br/>
                                 <?php 
-                                    $sql = "SELECT list_name, list_id FROM contact_list";
+                                    $sql = "SELECT list_name, list_id FROM contact_list WHERE id_user=" . $_SESSION['user'];
                                     foreach ($dbh->query($sql) as $row)
                                     {
                                         echo "<input class='is-checked' type='checkbox' name='radio_groups_name[]' value='" . $row['list_id'] . "'>" . $row['list_name'] . "<br/>";

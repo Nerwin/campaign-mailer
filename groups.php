@@ -57,32 +57,40 @@ if(!isset($_SESSION['user']))
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1>Mes groupes de mails</h1>
+                        <h1>Groupes de contacts</h1>
                     </div>
                     <div class="groups-container">
                         <h3 class="col-md-6">Mes groupes</h3>
-                        <h3 class="col-md-6">Contacts : <?php if(!empty($_GET['id'])) echo $_GET['id']; ?></h3>
+                        <h3 class="col-md-6">Mes contacts du groupe : <?php if(!empty($_GET['id'])) echo $_GET['id']; ?></h3>
                         <!--Affichage de la liste des contact_list -->
                         <div class="col-md-6 div-contact-list">
-                            <table class="col-md-12 table table-hover">
+                            <table class="col-md-12 table table-hover table-design">
                                 <?php 
                                     $sql = "SELECT list_name, list_id FROM contact_list WHERE id_user=" . $_SESSION['user'];
                                     foreach ($dbh->query($sql) as $row)
                                     {
                                         echo "
                                             <tr>
-                                                <td>" . $row["list_id"] . "</td>
+                                                <td style='visibility: hidden; position:absolute'>" . $row["list_id"] . "</td>
                                                 <td>
-                                                    <a id='row-list-" . $row['list_id'] . "' cursor='pointer' href='?id=".$row['list_id']."'>" . $row['list_name'] . "</a>
+                                                    <i class='fa fa-users fa-2'></i>
                                                 </td>
                                                 <td>
-                                                    <a title='modifier' onclick='popFormList(" . $row['list_id'] . ")'>
-                                                        <img class='iconeImage' src='img/engrenage.png'/>
+                                                    <label id='row-list-" . $row['list_id'] . "'>" . $row['list_name'] . "</label>
+                                                </td>
+                                                <td>
+                                                    <a style='color: black;cursor: pointer' title='Editer' href='?id=".$row['list_id']."'>
+                                                        <i class='fa fa-user-plus fa-2'></i>
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a title='Supprimer' href='manageGroups.php?type=delete&list_id=". $row["list_id"] . "'>
-                                                        <img class='iconeImage' src='img/croix.png'/>
+                                                    <a style='color: black;cursor: pointer' title='Modifier' onclick='popFormList(" . $row['list_id'] . ")'>
+                                                        <i class='fa fa-cog fa-2'></i>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a style='color: black' title='Supprimer' href='manageGroups.php?type=delete&list_id=". $row["list_id"] . "'>
+                                                        <i class='fa fa-trash-o fa-2'></i>
                                                     </a>
                                                 </td>
                                             </tr>";
@@ -92,7 +100,7 @@ if(!isset($_SESSION['user']))
                         </div>
                         <!--Affichage de la liste des contact de la contact_list -->
                         <div class="col-md-6 div-contact">
-                            <table class="col-md-12 table table-hover">
+                            <table class="col-md-12 table table-hover table-design">
                             <?php 
                             if(!empty($_GET['id']))
                             {
@@ -101,17 +109,20 @@ if(!isset($_SESSION['user']))
                                 {
                                     echo "
                                         <tr>
-                                            <td id='td-contact-id-" . $row['contact_id'] . "'>" . $row['contact_id'] . "</td>
+                                            <td style='visibility: hidden; position:absolute'id='td-contact-id-" . $row['contact_id'] . "'>" . $row['contact_id'] . "</td>
+                                            <td>
+                                                    <i class='fa fa-user fa-2'></i>
+                                            </td>
                                             <td id='td-contact-name-" . $row['contact_id'] . "'>" . $row["contact_name"] ." </td>
                                             <td id='td-contact-mail-" . $row['contact_id'] . "'> ". $row["contact_mail"] ."</td>
                                             <td>
-                                                <a title='modifier' onclick='popFormContact(\"" . $row['contact_id'] . "\")'>
-                                                    <img class='iconeImage' src='img/engrenage.png'/>
+                                                <a style='color: black;cursor: pointer' title='modifier' onclick='popFormContact(\"" . $row['contact_id'] . "\")'>
+                                                    <i class='fa fa-cog fa-2'></i>
                                                 </a>
                                             </td>
                                             <td>
-                                                <a title='Supprimer' href='manageGroups.php?type=deleteUser&id=". $row['contact_id'] ."&id_list=" . $_GET['id'] ."'>
-                                                    <img class='iconeImage' src='img/croix.png'/>
+                                                <a style='color: red' title='Supprimer' href='manageGroups.php?type=deleteUser&id=". $row['contact_id'] ."&id_list=" . $_GET['id'] ."'>
+                                                    <i class='fa fa-minus fa-2'></i>
                                                 </a>
                                             </td>
                                         </tr>";
@@ -137,7 +148,7 @@ if(!isset($_SESSION['user']))
                         </div>
                         <div class='col-md-6 div-other-contact'>
                         <!--Affichage de la liste des contact pour ajout dans une contact_list -->                            
-                            <table class="col-md-12 table table-hover">
+                            <table class="col-md-12 table table-hover table-design">
                             <?php 
                             if(!empty($_GET['id']))
                             {
@@ -146,17 +157,20 @@ if(!isset($_SESSION['user']))
                                 {
                                     echo "
                                         <tr>
-                                            <td id='td-contact2-id-" . $row['contact_id'] . "'>" . $row['contact_id'] . "</td>
+                                            <td style='visibility: hidden; position:absolute' id='td-contact2-id-" . $row['contact_id'] . "'>" . $row['contact_id'] . "</td>
+                                            <td>
+                                                    <i class='fa fa-user fa-2'></i>
+                                            </td>
                                             <td id='td-contact2-name-" . $row['contact_id'] . "'>" . $row["contact_name"] ." </td>
                                             <td id='td-contact2-mail-" . $row['contact_id'] . "'> ". $row["contact_mail"] ."</td>
                                             <td>
-                                                <a title='modifier' onclick='popFormContactOther(" . $row['contact_id'] . ")'>
-                                                    <img class='iconeImage' src='img/engrenage.png'/>
+                                                <a style='color: black;cursor: pointer' title='modifier' onclick='popFormContactOther(\"" . $row['contact_id'] . "\")'>
+                                                    <i class='fa fa-cog fa-2'></i>
                                                 </a>
                                             </td>
                                             <td>
-                                                <a title='Ajouter' href='manageGroups.php?type=addUser&id=". $row['contact_id'] ."&id_list=" . $_GET['id'] ."'>
-                                                    <img class='iconeImage' src='img/plus.png'/>
+                                                <a style='color: green' title='Ajouter' href='manageGroups.php?type=addUser&id=". $row['contact_id'] ."&id_list=" . $_GET['id'] ."'>
+                                                    <i class='fa fa-plus fa-2'></i>
                                                 </a>
                                             </td>
                                         </tr>";
@@ -166,7 +180,7 @@ if(!isset($_SESSION['user']))
                             </table>
                         </div>
                     </div>
-                    <h3 class="col-md-12">Modifier</h3>
+                    <h3 class="col-md-12">Modifier un groupe</h3>
                     <div class="col-md-6 div-update">
                         <!-- Formulaire de modification de contact-list -->
                         <div name="formUpdateList" id="formUpdateList" style="visibility: hidden"> 

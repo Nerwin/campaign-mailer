@@ -19,9 +19,9 @@ font-size:12px;
 #formUpdateList{
     position: absolute;
 }
-.important_sidebar{
+/*.important_sidebar{
     background-color: #504F52;
-}
+}*/
 
 /*######################## Tuiles ##################################*/
 
@@ -29,6 +29,8 @@ font-size:12px;
     background-color: #F9F9F9;
     height: 200px;
     border-style: solid;
+    border-color: grey;
+    border-radius: 10px;
     overflow-y: auto;    
 }
 
@@ -36,6 +38,8 @@ font-size:12px;
     background-color: #F9F9F9;
     height: 200px;
     border-style: solid;
+    border-color: grey;
+    border-radius: 10px;
     overflow-y: auto;    
 }
 
@@ -43,6 +47,8 @@ font-size:12px;
     background-color: #F9F9F9;
     height: 200px;
     border-style: solid;
+    border-color: grey;
+    border-radius: 10px;
     overflow-y: auto;    
 }
 
@@ -50,12 +56,16 @@ font-size:12px;
     background-color: #F9F9F9;
     height: 250px;
     border-style: solid;
+    border-color: grey;
+    border-radius: 10px;
     overflow-y: auto;    
 }
 .div-other-contact{
     background-color: #F9F9F9;
     height: 200px;
     border-style: solid;
+    border-color: grey;
+    border-radius: 10px;
     overflow-y: auto;        
 }
 
@@ -165,6 +175,17 @@ table tr td a
 #header #right #content a
 {
  color:#00a2d1;
+}
+.logout{
+    background-color: black;
+    width: 100%;
+    height: 30px;
+}
+.logout-a{
+    margin-left: 80%;
+}
+.table-design{
+    text-align: center;
 }
 
 /* css for home page */

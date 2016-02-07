@@ -15,6 +15,8 @@ if(isset($_POST['btn-signup']))
     
     $sql="INSERT INTO user(login,mail,password) VALUES('$login','$mail','$password')";
     $dbh->exec($sql);
+    
+    header('Location: index.php');
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -31,10 +33,13 @@ if(isset($_POST['btn-signup']))
         <link href="css/simple-sidebar.css" rel="stylesheet">
         <!-- Perso CSS -->
         <link href="css/style.css" rel="stylesheet">
+        <!--ICONE-->
+        <link rel="icon" type="image/png" href="img/icon_mail.png" />
         <!-- JS -->
         <script type="text/javascript\" src="js/bootstrap.js"></script>
         <script src="js/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <title>Registration</title>
     </head>
     <body>
         <center>
