@@ -1,4 +1,11 @@
-<?php include("header.php"); ?>
+<?php include("header.php"); 
+session_start();
+
+if(!isset($_SESSION['user']))
+{
+    header("Location: index.php");
+}
+?>
 
 <head>
     <title>Mes campagnes</title>

@@ -1,4 +1,19 @@
-<?php include("header.php"); ?>
+<?php include("header.php"); 
+session_start();
+
+if(!isset($_SESSION['user']))
+{
+    header("Location: index.php");
+}
+
+$sql3="SELECT * FROM user WHERE id=".$_SESSION['user'];
+foreach ($dbh->query($sql3) as $row)
+{
+    $login_user = $row['login'];
+    $mail_user = $row['mail'];
+}
+
+?>
 
 <head>
     <script language="Javascript">
@@ -40,14 +55,14 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1>Mes Contactes</h1>
+                        <h1>Mes Contacts</h1>
                     </div>
                     <div class="groups-container">
                         <!--Affichage de la liste des contact -->
                         <div class="col-md-6 div-update">
                             <table class="col-md-12 table table-hover">
                                 <?php 
-                                    $sql = "SELECT contact_name, contact_id, contact_mail FROM contact";
+                                    $sql = "SELECT contact_name, contact_id, contact_mail FROM contact WHERE id_user=" . $_SESSION['user'];
                                     foreach ($dbh->query($sql) as $row)
                                     {
                                         $id_contact=$row['contact_id'];

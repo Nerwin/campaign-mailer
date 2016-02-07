@@ -1,10 +1,15 @@
-<?php include("header.php"); ?>
+<?php include("header.php"); 
+session_start();
+
+if(!isset($_SESSION['user']))
+{
+    header("Location: index.php");
+}
+?>
     
 <head>
     <title>A propos</title>
 </head>         
-
-
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">

@@ -29,20 +29,23 @@
                 <li class="sidebar-brand">
                         Menu d'administration
                 </li>
+                    <li>
+                        <a href='logout.php?logout'>Sign Out</a>
+                    </li>
                 <li>
                     <a href="index.php">Tableau de bord</a>
                 </li>
-                <li>
+                <li class="important_sidebar">
+                    <a href="contacts.php">Contacts</a>
+                </li>
+                <li class="important_sidebar">
+                    <a href="groups.php">Groupes</a>
+                </li>                
+                <li class="important_sidebar">
                     <a href="mails.php">Mails</a>
                 </li>
                 <li>
-                    <a href="groups.php">Groupes</a>
-                </li>
-                <li>
                     <a href="campaigns.php">Campagnes</a>
-                </li>
-                <li>
-                    <a href="contacts.php">Contacts</a>
                 </li>
                 <li>
                     <a href="about.php">A propos</a>

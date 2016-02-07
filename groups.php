@@ -1,4 +1,11 @@
-<?php include("header.php"); ?>
+<?php include("header.php"); 
+session_start();
+
+if(!isset($_SESSION['user']))
+{
+    header("Location: index.php");
+}
+?>
 <head>
     <script language="Javascript">
         function popFormList(listId)
@@ -59,7 +66,7 @@
                         <div class="col-md-6 div-contact-list">
                             <table class="col-md-12 table table-hover">
                                 <?php 
-                                    $sql = "SELECT list_name, list_id FROM contact_list";
+                                    $sql = "SELECT list_name, list_id FROM contact_list WHERE id_user=" . $_SESSION['user'];
                                     foreach ($dbh->query($sql) as $row)
                                     {
                                         echo "
@@ -89,7 +96,7 @@
                             <?php 
                             if(!empty($_GET['id']))
                             {
-                                $sql = "SELECT contact_name, contact_mail, contact_id FROM contact, appartient, contact_list WHERE appartient.id_contact_list = contact_list.list_id AND contact.contact_id = appartient.id_contact AND contact_list.list_id =". $_GET['id'];
+                                $sql = "SELECT contact_name, contact_mail, contact_id FROM contact, appartient, contact_list WHERE appartient.id_contact_list = contact_list.list_id AND contact.contact_id = appartient.id_contact AND contact_list.list_id =". $_GET['id'] . " AND contact.id_user=" . $_SESSION['user'] ." AND contact_list.id_user=" . $_SESSION['user'];
                                 foreach ($dbh->query($sql) as $row)
                                 {
                                     echo "
