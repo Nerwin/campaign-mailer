@@ -6,13 +6,6 @@ if(!isset($_SESSION['user']))
     header("Location: index.php");
 }
 
-$sql3="SELECT * FROM user WHERE id=".$_SESSION['user'];
-foreach ($dbh->query($sql3) as $row)
-{
-    $login_user = $row['login'];
-    $mail_user = $row['mail'];
-}
-
 ?>
 
 <head>

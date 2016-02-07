@@ -1,11 +1,13 @@
-<?php include("connection.php"); ?>
+<?php include("connection.php"); 
+session_start();
+?>
 <?php
 //AJOUT D'UN GROUPE A LA BDD
     if (isset($_POST['createGroup']) && $_GET['type'] == 'add')
     {
         /* VALUES */
         $nom=$_POST['name'];   
-        $sql = "INSERT INTO contact_list (list_name, id_user) VALUES ( '".utf8_decode($nom)."', '1')";
+        $sql = "INSERT INTO contact_list (list_name, id_user) VALUES ( '".utf8_decode($nom)."', '" . $_SESSION['user'] . "')";
         // use exec() because no results are returned
         $dbh->exec($sql);
         header('Location: groups.php');

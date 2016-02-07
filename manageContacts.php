@@ -1,4 +1,6 @@
-<?php include("connection.php"); ?>
+<?php include("connection.php"); 
+session_start();
+?>
 <?php
 //AJOUT D'UN CONTACT A LA BDD
     if (isset($_POST['createContact']) && $_GET['type'] == 'add')
@@ -7,7 +9,7 @@
         $id_contact = uniqid();
         $nom=$_POST['name'];
         $mail=$_POST['mail'];   
-        $sql = "INSERT INTO contact (contact_id, contact_mail, contact_name, id_user) VALUES ('" . $id_contact . "', '".utf8_decode($mail)."','".utf8_decode($nom)."', '1')";
+        $sql = "INSERT INTO contact (contact_id, contact_mail, contact_name, id_user) VALUES ('" . $id_contact . "', '".utf8_decode($mail)."','".utf8_decode($nom)."', '" . $_SESSION['user'] . "')";
         // use exec() because no results are returned
         $dbh->exec($sql);
         header('Location: contacts.php');
@@ -64,7 +66,7 @@
                         (   '" . $id_contact . "',
                             '".addslashes($data[0])."', 
                             '".addslashes($data[1])."',
-                            '1' 
+                            '" . $_SESSION['user'] . "' 
                         ) 
                     ";
                     $dbh->exec($sql);
