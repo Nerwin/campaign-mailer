@@ -1,5 +1,14 @@
-<?php include("connection.php"); ?>
+<?php include("connection.php"); 
 
+session_start();
+
+$sql="SELECT * FROM user WHERE id=".$_SESSION['user'];
+foreach ($dbh->query($sql) as $row)
+{
+    $user_login = $row['login'];
+    $user_mail = $row['mail'];
+}    
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -29,11 +38,8 @@
                 <li class="sidebar-brand">
                         Menu d'administration
                 </li>
-                    <li>
-                        <a href='logout.php?logout'>Sign Out</a>
-                    </li>
                 <li>
-                    <a href="index.php">Tableau de bord</a>
+                    <a href='logout.php?logout'>Sign Out from <?php echo $user_login; ?></a>
                 </li>
                 <li class="important_sidebar">
                     <a href="contacts.php">Contacts</a>
