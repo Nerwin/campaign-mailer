@@ -18,9 +18,12 @@ session_start();
     if ($_GET['type'] == 'delete')
     {
         /* VALUES */
-        $id=$_GET['contact_id'];   
+        $id=$_GET['contact_id'];
+        //Suppression du contact
         $sql = "DELETE FROM contact WHERE contact_id='". $id ."'";
-        // use exec() because no results are returned
+        $dbh->exec($sql);
+        //Suppression dans la table appartient
+        $sql = "DELETE FROM appartient WHERE id_contact='" . $id . "'";
         $dbh->exec($sql);
         header('Location: contacts.php');
     }

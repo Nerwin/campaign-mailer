@@ -16,9 +16,12 @@ session_start();
     if ($_GET['type'] == 'delete')
     {
         /* VALUES */
-        $id=$_GET['list_id'];   
+        $id=$_GET['list_id'];
+        //Suppression de la contact_list
         $sql = "DELETE FROM contact_list WHERE list_id='". $id ."'";
-        // use exec() because no results are returned
+        $dbh->exec($sql);
+        //Suppression dans la table appartient
+        $sql = "DELETE FROM appartient WHERE id_contact_list='". $id ."'";
         $dbh->exec($sql);
         header('Location: groups.php');
     }

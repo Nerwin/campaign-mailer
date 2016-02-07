@@ -50,6 +50,16 @@ if(!isset($_SESSION['user']))
                 }
         }
     </script> 
+    <?php
+    if(!empty($_GET['id']))
+    {
+        $sql = "SELECT list_name FROM contact_list WHERE list_id=" . $_GET['id'];
+        foreach ($dbh->query($sql) as $row)
+        {
+            $groups_name = $row['list_name'];
+        }
+    }
+    ?>
     <title>Mes groupes</title>
 </head>
         <!-- Page Content -->
@@ -61,7 +71,7 @@ if(!isset($_SESSION['user']))
                     </div>
                     <div class="groups-container">
                         <h3 class="col-md-6">Mes groupes</h3>
-                        <h3 class="col-md-6">Mes contacts du groupe : <?php if(!empty($_GET['id'])) echo $_GET['id']; ?></h3>
+                        <h3 class="col-md-6">Mes contacts du groupe :&nbsp<strong><?php if(!empty($_GET['id'])) echo $groups_name; ?></strong></h3>
                         <!--Affichage de la liste des contact_list -->
                         <div class="col-md-6 div-contact-list">
                             <table class="col-md-12 table table-hover table-design">
