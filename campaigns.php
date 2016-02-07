@@ -16,9 +16,7 @@ if(!isset($_SESSION['user']))
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1>Mes campagnes de mails</h1>
-                        <p>Ici le suivi de nos campagnes</p>
-                     
+                        <h1><i class="fa fa-flag fa-5"></i>&nbsp;Campagnes</h1>                     
                     </div>
                 </div>
             </div>
@@ -26,10 +24,5 @@ if(!isset($_SESSION['user']))
         <!-- /#page-content-wrapper -->
     </div>
     <!-- /#wrapper -->
-     
-     <!-- Scripts JS -->
-    <script src="../js/jquery.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-
 </body>
 </html>

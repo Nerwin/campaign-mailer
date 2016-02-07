@@ -57,7 +57,7 @@ if(!isset($_SESSION['user']))
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1>Groupes de contacts</h1>
+                        <h1><i class="fa fa-users fa-5"></i>&nbsp;Groupes de contacts</h1>
                     </div>
                     <div class="groups-container">
                         <h3 class="col-md-6">Mes groupes</h3>

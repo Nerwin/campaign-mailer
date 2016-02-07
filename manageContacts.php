@@ -62,10 +62,13 @@ session_start();
                 }                
                 if ($data[0]) 
                 { 
+                    $contact_name = addslashes($data[0]);
+                    $contact_mail = addslashes($data[1]);
+                    $contact_mail_without_semilicon = explode(";", $contact_mail);
                     $sql = "INSERT INTO contact (contact_id, contact_name, contact_mail, id_user) VALUES
                         (   '" . $id_contact . "',
-                            '".addslashes($data[0])."', 
-                            '".addslashes($data[1])."',
+                            '".$contact_name."', 
+                            '".$contact_mail_without_semilicon[0]."',
                             '" . $_SESSION['user'] . "' 
                         ) 
                     ";

@@ -46,23 +46,23 @@ foreach ($dbh->query($sql) as $row)
                 <li class="sidebar-brand">
                         Menu d'administration
                 </li>
-                <li class="important_sidebar">
-                    <a href="contacts.php">Contacts</a>
+                <li class="important_sidebar">                    
+                    <a href="contacts.php"><i class='fa fa-user fa-2'></i>&nbsp;Contacts</a>
                 </li>
                 <li class="important_sidebar">
-                    <a href="groups.php">Groupes</a>
+                    <a href="groups.php"><i class='fa fa-users fa-2'></i>&nbsp;Groupes</a>
                 </li>                
                 <li class="important_sidebar">
-                    <a href="mails.php">Mails</a>
+                    <a href="mails.php"><i class="fa fa-envelope fa-2"></i>&nbsp;Mails</a>
                 </li>
                 <li>
-                    <a href="campaigns.php">Campagnes</a>
+                    <a href="campaigns.php"><i class="fa fa-flag fa-2"></i>&nbsp;Campagnes</a>
                 </li>
                 <li>
-                    <a href="about.php">A propos</a>
+                    <a href="about.php"><i class="fa fa-info-circle fa-2"></i>&nbsp;A propos</a>
                 </li>
                 <li>
-                    <a href="contact.php">Nous contacter</a>
+                    <a href="contact.php"><i class="fa fa-phone fa-2"></i>&nbsp;Nous contacter</a>
                 </li>
                 
             </ul>

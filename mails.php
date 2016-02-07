@@ -8,7 +8,7 @@ if(!isset($_SESSION['user']))
 ?>
 
 <head>
-    <title>Mails</title>
+    <title>Mes Mails</title>
 </head>
 
         <!-- Page Content -->
@@ -16,9 +16,7 @@ if(!isset($_SESSION['user']))
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1>Administration des adresses mails</h1>
-                        <p>Ici la gestion import / création / update</p>
-                        
+                        <h1><i class="fa fa-envelope fa-5"></i>&nbsp;Mails</h1>                        
                     </div>
                 </div>
             </div>

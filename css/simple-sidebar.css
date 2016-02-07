@@ -116,6 +116,7 @@
     #page-content-wrapper {
         padding: 20px;
         position: relative;
+        background-color: #F9F9F9;
     }
 
     #wrapper.toggled #page-content-wrapper {
