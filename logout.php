@@ -7,7 +7,7 @@ if(!isset($_SESSION['user']))
 }
 else if(isset($_SESSION['user'])!="")
 {
-    header("Location: home.php");
+    header("Location: contacts.php");
 }
 
 if(isset($_GET['logout']))
