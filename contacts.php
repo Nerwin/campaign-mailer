@@ -54,7 +54,7 @@ if(!isset($_SESSION['user']))
                         <h3 class="col-md-6">Mes Contacts</h3>
                         <h3 class="col-md-6">Ajouter un contact</h3>
                         <!--Affichage de la liste des contact -->
-                        <div class="col-md-6 div-update">
+                        <div class="col-md-6 div-contact">
                             <table class="col-md-12 table table-hover table-design">
                                 <?php 
                                     $sql = "SELECT contact_name, contact_id, contact_mail FROM contact WHERE id_user=" . $_SESSION['user'];
@@ -93,7 +93,7 @@ if(!isset($_SESSION['user']))
                                     <input class="form-control" type="text" name="name" placeholder="Nom du contact" required><br>
                                     <label>Mail du contact : </label>
                                     <input class="form-control" type="text" name="mail" placeholder="Mail du contact" required><br>
-                                    <input class="btn-info" type="submit" name="createContact" value="Créer">
+                                    <input class="btn btn-default btn-lg btn-block" type="submit" name="createContact" value="Créer">
                                 </div>
                             </form>
                         </div>
@@ -109,7 +109,7 @@ if(!isset($_SESSION['user']))
                                         <input class="form-control" id="input_update_contact1" type="text" name="name_contact" placeholder="Nom du groupe" required><br>
                                         <label>Email du contact : </label>
                                         <input class="form-control" id="input_update_contact3" type="text" name="mail_contact" placeholder="Email du contact" required><br>
-                                        <input class="btn-info" type="submit" name="updateContact" value="Modifier">
+                                        <input class="btn btn-default btn-lg btn-block" type="submit" name="updateContact" value="Modifier">
                                     </div>
                                 </form>
                             </div>                     
@@ -117,16 +117,17 @@ if(!isset($_SESSION['user']))
                         <!--IMPORT DE FICHIER CSV-->
                         <div class="col-md-6">
                             <form method="post" action="manageContacts.php?type=importer" enctype="multipart/form-data">
-                                    <input onclick='checkList()' id='checkAll' type='checkBox' name=''><strong>Cocher tout</strong><br/>
-                                <?php 
-                                    $sql = "SELECT list_name, list_id FROM contact_list WHERE id_user=" . $_SESSION['user'];
-                                    foreach ($dbh->query($sql) as $row)
-                                    {
-                                        echo "<input class='is-checked' type='checkbox' name='radio_groups_name[]' value='" . $row['list_id'] . "'>" . $row['list_name'] . "<br/>";
-                                    }
-                                ?>    
+                                <input onclick='checkList()' id='checkAll' type='checkBox' name=''/><strong>Cocher tout</strong><br/>                                     
+                                    <?php 
+                                        $sql = "SELECT list_name, list_id FROM contact_list WHERE id_user=" . $_SESSION['user'];
+                                        $i = 0;
+                                        foreach ($dbh->query($sql) as $row)
+                                        {
+                                            echo "<input class='is-checked' type='checkbox' name='radio_groups_name[]' value='" . $row['list_id'] . "'>" . $row['list_name']. "</br>";                                                
+                                        }
+                                    ?>
                                 <input type="file" name="csv" id='csv' accept=".csv" required/>
-                                <input class="btn-info" type="submit" name="importer" value="Importer" />
+                                <input class="btn btn-default btn-lg btn-block" type="submit" name="importer" value="Importer" />
                             </form>
                         </div>
                 </div>

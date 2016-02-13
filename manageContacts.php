@@ -38,11 +38,12 @@ session_start();
         $sql2 ="UPDATE contact SET contact_name='" . $name . "', contact_mail='" . $mail . "' WHERE contact_id='" . $id_contact . "'";
         $dbh->exec($sql2);
         header('Location: contacts.php');    
-    }
+    }  
 //IMPORT FICHIER CSV
     if(isset($_POST['importer']) && $_GET['type'] == 'importer')
     {
-        if ($_FILES['csv']['size'] > 0) { 
+        if ($_FILES['csv']['size'] > 0) 
+        { 
             //get the csv file
             $file = $_FILES['csv']['tmp_name']; 
             $handle = fopen($file,"r");
@@ -52,33 +53,72 @@ session_start();
 
             while ($data = fgetcsv($handle,1000,",","'")) 
             {
-                $id_contact = uniqid();
-                foreach($_POST['radio_groups_name'] as $valeur => $id)
+                //GET DATA FROM CSV 
+                if($data[0])
                 {
-                    $sql = "INSERT INTO appartient (appartient_id, id_contact, id_contact_list) VALUES 
-                        (   '',
-                            '" . $id_contact . "',
-                            '" . $id . "'
-                        )
-                    ";
-                    $dbh->exec($sql);
-                }                
-                if ($data[0]) 
-                { 
-                    $contact_name = addslashes($data[0]);
-                    $contact_mail = addslashes($data[1]);
-                    $contact_mail_without_semilicon = explode(";", $contact_mail);
-                    $sql = "INSERT INTO contact (contact_id, contact_name, contact_mail, id_user) VALUES
-                        (   '" . $id_contact . "',
-                            '".$contact_name."', 
-                            '".$contact_mail_without_semilicon[0]."',
-                            '" . $_SESSION['user'] . "' 
-                        ) 
-                    ";
-                    $dbh->exec($sql);
-                } 
+                    $contact_name = addslashes($data[0]);                    
+                    $contact_mail = addslashes($data[1]);                    
+                    $contact_mail_without_semilicon = explode(";", $contact_mail);                               
+                    
+                    $search1 = $dbh->prepare("SELECT * FROM contact WHERE contact_mail='" . $contact_mail_without_semilicon[0] . "'");
+                    $search1->execute() or die(print_r($search1->errorInfo()));
+                    $result = $search1->fetch(PDO::FETCH_ASSOC);
+                    
+                    //Si l'utilisateur existe
+                    if($result)
+                    {
+                        //Existe déjà
+                        foreach($_POST['radio_groups_name'] as $valeur => $id)
+                        {
+                            //On vérifie que les liens n'existent pas déjà
+                            $search2 = $dbh->prepare("SELECT * FROM appartient WHERE id_contact='" . $result['contact_id'] . "' AND id_contact_list='" . $id . "'");
+                            $search2->execute() or die(print_r($search2->errorInfo()));
+                            
+                            if($search2->fetch())
+                            {
+                                //S'il existe, on ne fait rien
+                            }
+                            else
+                            {
+                                //Sinon, on le créer                                   
+                                $sql4 = "INSERT INTO appartient (id_contact, id_contact_list) VALUES 
+                                    (   
+                                        '" . $result['contact_id'] . "',
+                                        '" . $id . "'
+                                    )
+                                ";
+                                $dbh->exec($sql4);                             
+                            }
+                                                
+                        }                    
+                    }
+                    //Si l'utilisateur n'existe pas
+                    else
+                    {
+                        //On créer les liens de l'utilisateur avec les groupes dans la table appartient
+                        $id_contact = uniqid();
+                        foreach($_POST['radio_groups_name'] as $valeur => $id)
+                        { 
+                            $sql1 = "INSERT INTO appartient (id_contact, id_contact_list) VALUES 
+                                ( 
+                                    '" . $id_contact . "',
+                                    '" . $id . "'
+                                )
+                            ";
+                            $dbh->exec($sql1);
+                        }
+                        //On créer l'utilisateur
+                        $sql2 = "INSERT INTO contact (contact_id, contact_name, contact_mail, id_user) VALUES
+                            (   '" . $id_contact . "',
+                                '".$contact_name."', 
+                                '".$contact_mail_without_semilicon[0]."',
+                                '" . $_SESSION['user'] . "' 
+                            ) 
+                        ";
+                        $dbh->exec($sql2);
+                    }
+                }
             };
-        
         }
         header('Location: contacts.php');
     }
