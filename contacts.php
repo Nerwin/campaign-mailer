@@ -120,7 +120,6 @@ if(!isset($_SESSION['user']))
                                 <input onclick='checkList()' id='checkAll' type='checkBox' name=''/><strong>Cocher tout</strong><br/>                                     
                                     <?php 
                                         $sql = "SELECT list_name, list_id FROM contact_list WHERE id_user=" . $_SESSION['user'];
-                                        $i = 0;
                                         foreach ($dbh->query($sql) as $row)
                                         {
                                             echo "<input class='is-checked' type='checkbox' name='radio_groups_name[]' value='" . $row['list_id'] . "'>" . $row['list_name']. "</br>";                                                

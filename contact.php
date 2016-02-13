@@ -16,7 +16,11 @@ if(!isset($_SESSION['user']))
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1><i class="fa fa-phone fa-5"></i>&nbsp;Nous contacter</h1>                       
+                        <h1><i class="fa fa-phone fa-5"></i>&nbsp;Nous contacter</h1>
+                            <form method="post" action="manageContact.php">
+                            <input type="text" name="destinataire">
+                            <input type="submit" value="envoyer"> 
+                        </form>
                     </div>
                 </div>
             </div>
